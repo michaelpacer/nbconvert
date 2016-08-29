@@ -16,6 +16,7 @@
     {%- elif nb.metadata.language_info.name -%}
         {{ nb.metadata.language_info.name }}
     {%- endif %}
+{%- else-%}
     {{ python }}
 {%- endif %}
 {{ cell.source | indent}}
