@@ -10,12 +10,13 @@
 {% block input %}
 {%- if cell.source.strip() -%}
 {{".. code:: "-}}
-{%- if nb.metadata.language_info.pygments_lexer -%}
-    {{ nb.metadata.language_info.pygments_lexer }}
-{%- elif nb.metadata.language_info.name -%}
-    {{ nb.metadata.language_info.name }}
+{%- if nb.metadata.get(language_info,{})-%}
+    {%- if nb.metadata.language_info.pygments_lexer -%}
+        {{ nb.metadata.language_info.pygments_lexer }}
+    {%- elif nb.metadata.language_info.name -%}
+        {{ nb.metadata.language_info.name }}
+    {%- endif %}
 {%- endif %}
-
 {{ cell.source | indent}}
 {% endif -%}
 {% endblock input %}
