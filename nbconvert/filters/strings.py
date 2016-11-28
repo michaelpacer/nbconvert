@@ -84,7 +84,11 @@ def _convert_header_id(header_contents):
 
     For use on markdown headings.
     """
-    return header_contents.replace(' ', '-')
+    leading_letter_regex = r'(?P<to_remove>[^a-zA-Z]*)(?P<to_keep>.*)'
+    m = re.match(leading_letter_regex,header_contents)
+    letter_first_header = m.group("to_keep")
+    
+    return letter_first_header.replace(' ', '-')
 
 def add_anchor(html):
     """Add an id and an anchor-link to an html header
