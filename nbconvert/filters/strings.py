@@ -10,6 +10,7 @@ templates.
 
 import os
 import re
+import regex
 import textwrap
 import warnings
 
@@ -87,8 +88,8 @@ def _convert_header_id(header_contents):
     leading_letter_regex = r'(?P<to_remove>[^a-zA-Z]*)(?P<to_keep>.*)'
     m = re.match(leading_letter_regex,header_contents)
     letter_first_header = m.group("to_keep")
-    
-    return letter_first_header.replace(' ', '-')
+    unpunctual_header = regex.sub(r"(?V1)[[\p{P}]&&[\-._]]","",letter_first_header)
+    return unpunctual_header.replace(' ', '-')
 
 def add_anchor(html):
     """Add an id and an anchor-link to an html header
