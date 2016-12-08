@@ -78,6 +78,8 @@ def html2text(element):
     return text
 
 
+_manual_id_re = re.compile(r'\{\#([\w\-.]+)\}$')
+
 def _convert_header_id(header_contents):
     """Convert header contents to valid id value. Takes string as input, returns string.
     
@@ -85,6 +87,10 @@ def _convert_header_id(header_contents):
 
     For use on markdown headings.
     """
+    manual_id = _manual_id_re.findall(header_contents)
+    assert len(manual_id)<=1, "Multiple manually specified ids have been found for a single header."
+    if manual_id :
+        return manual_id
     leading_letter_regex = r'(?P<to_remove>[^a-zA-Z]*)(?P<to_keep>.*)'
     m = re.match(leading_letter_regex,header_contents)
     letter_first_header = m.group("to_keep")
