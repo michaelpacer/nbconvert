@@ -17,7 +17,7 @@ def resolve_references(source):
 
 def resolve_one_reference(key, val, fmt, meta):
     """
-    This defines a function that ony allows alphanumeric characters, _, and - in links. 
+    This defines a function that ony allows alphanumeric characters, _, ., and - in links. 
     
     This takes a tuple of arguments that are compatible with ``pandocfilters.walk()`` that
     allows identifying hyperlinks in the document and transforms them into valid LaTeX 
@@ -33,7 +33,7 @@ def resolve_one_reference(key, val, fmt, meta):
         if m:
             # pandoc automatically makes labels for headings.
             label = m.group(1).lower()
-            label = re.sub(r'[^\w-]+', '', label) # Strip HTML entities
+            label = re.sub(r'[^\w\-\.]+', '', label) # Strip HTML entities
             return RawInline('tex', r'Section \ref{%s}' % label)
 
     # Other elements will be returned unchanged.
