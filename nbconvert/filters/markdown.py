@@ -66,7 +66,7 @@ def modification_to_remove_all_formatting_in_json(json_formatted):
     #now some smart_element_surgery_on_datastructure
     return json_datastructure 
 
-def to_be_moved_and_renamed_later(source)
+def to_be_moved_and_renamed_later(source):
     """Convert to json, remove all formatting and convert back to markdown.
     """
     return md2json2md_pandoc(source, ((modification_to_remove_all_formatting_in_html,,),))
