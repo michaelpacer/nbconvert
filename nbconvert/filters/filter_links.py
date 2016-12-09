@@ -17,6 +17,8 @@ def resolve_references(source):
 
 def resolve_one_reference(key, val, fmt, meta):
     """
+    This defines a function that ony allows alphanumeric characters, _, and - in links. 
+    
     This takes a tuple of arguments that are compatible with ``pandocfilters.walk()`` that
     allows identifying hyperlinks in the document and transforms them into valid LaTeX 
     \\ref{} calls so that linking to headers between cells is possible.
@@ -40,6 +42,8 @@ def resolve_one_reference(key, val, fmt, meta):
 
 def remove_one_link(key, val, fmt, meta):
     """
+    This defines a function that removes links.
+
     This takes a tuple of arguments that are compatible with ``pandocfilters.walk()`` that
     allows identifying hyperlinks in the document and transforms them into valid LaTeX 
     \\ref{} calls so that linking to headers between cells is possible.
@@ -55,7 +59,7 @@ def remove_one_link(key, val, fmt, meta):
 
 def remove_links(source):
     """
-    This applies the resolve_one_reference to the text passed in via the source argument.
+    This applies the remove_one_link to the text passed in via the source argument.
 
     This expects content in the form of a string encoded JSON object as represented
     internally in ``pandoc``.
