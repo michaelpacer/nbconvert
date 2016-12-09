@@ -57,6 +57,52 @@ def markdown2latex(source, markup='markdown', extra_args=None):
     return convert_pandoc(source, markup, 'latex', extra_args=extra_args)
 
 
+def modification_to_remove_all_formatting_in_json(json_formatted):
+    """Removing all formatting from json of passed in string
+    """
+    json_datastructure = remove_emphasis(json_datastructure)
+    json_datastructure = link_removal(json_datastructure)
+    json_datastructure = footnote_removal(json_datastructure)
+    #now some smart_element_surgery_on_datastructure
+    return json_datastructure 
+
+def to_be_moved_and_renamed_later(source)
+    """Convert to json, remove all formatting and convert back to markdown.
+    """
+    return md2json2md_pandoc(source, ((modification_to_remove_all_formatting_in_html,,),))
+
+def md2json2md_pandoc(source, func_tuple = (,), extra_args=None):
+    """
+    Convert a markdown string to JSON via pandoc, 
+    apply a sequence of functions to the data structure (always valid pandoc JSON)
+    
+
+    TODO: Include test after each step to check for valid JSON.
+    
+    TODO: Visualisation tool for displaying the sequence of applied filters. 
+    
+    TODO: Should include a test for invariancy across orders, 
+          issue a warning saying that the result will be different.
+
+    """
+    extra_args = extra_args or ['--mathjax']
+    textjson_under_modification = convert_pandoc(source, 'markdown', 'json', extra_args=extra_args)
+    textjson_sequence_db = {}
+        for (idx,(func, args, kwargs)) in enumerate(func_tuple):
+            textjson_sequence_db.update({func:{'text': convert_pandoc(textjson_under_modification,'json','markdown', extra_args=extra_args),
+                'textjson': textjson_under_modification,
+                'func_to_be_applied': [func.__name__, [args*], {kwargs**}],
+                'num_in_seq': idx
+                })
+            temp_transformed = func(temp_1, args*, kwargs**) 
+            if validjson_test(temp_transformed):
+                textjson_under_modification = temp_transformed
+            else:
+                # throw an error
+                 
+    return convert_pandoc(textjson_under_modification,"json","markdown",extra_args=extra_args)
+
+
 def markdown2html_pandoc(source, extra_args=None):
     """
     Convert a markdown string to HTML via pandoc.
