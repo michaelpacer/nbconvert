@@ -11,5 +11,5 @@ dependencies:
 - tornado
 - entrypoints
 - pip:
-    - sphinx>=1.5.1
+    - sphinx>=1.4.9
     - nbsphinx
