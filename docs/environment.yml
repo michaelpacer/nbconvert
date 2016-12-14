@@ -11,5 +11,5 @@ dependencies:
 - sphinx_rtd_theme
 - tornado
 - entrypoints
-# - pip:
-    # - nbsphinx
+- pip:
+    - nbsphinx
