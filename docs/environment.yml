@@ -12,4 +12,4 @@ dependencies:
 - entrypoints
 - pip:
     - sphinx==1.4.9
-    - nbsphinx
+    - nbsphinx --no-deps
